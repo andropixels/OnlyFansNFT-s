@@ -45,6 +45,11 @@ pub use sp_runtime::{Perbill, Permill};
 
 /// Import the template pallet.
 pub use pallet_template;
+pub use pallet_creators;
+
+pub use pallet_marketplace;
+pub use pallet_token_non_fungible;
+
 
 /// An index to a block.
 pub type BlockNumber = u32;
@@ -270,6 +275,28 @@ impl pallet_template::Config for Runtime {
 	type Event = Event;
 }
 
+
+impl pallet_creators::Config for Runtime {
+	type Event = Event;
+}
+
+impl pallet_marketplace::Config for Runtime {
+	type Event = Event;
+}
+
+
+impl pallet_token_non_fungible::Config for Runtime {
+	type Event = Event;
+}
+
+
+
+impl pallet_::Config for Runtime {
+	type Event = Event;
+}
+impl pallet_template::Config for Runtime {
+	type Event = Event;
+}
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
 	pub struct Runtime
@@ -288,6 +315,10 @@ construct_runtime!(
 		Sudo: pallet_sudo,
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template,
+		Creators:pallet_creators,
+		MarketPlace:pallet_marketplace, 
+		TokenNonFungible:pallet_token_non_fungible
+
 	}
 );
 
